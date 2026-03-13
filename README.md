@@ -15,17 +15,17 @@
 ## 🚀 一键安装
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash -s YOUR_API_KEY
+curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash
 ```
 
-**替换 `YOUR_API_KEY` 为你的 Crazyrouter API Key**  
-**获取 API Key**: https://crazyrouter.com
+**脚本会提示你输入 Crazyrouter API Key**  
+**获取 API Key**: https://crazyrouter.com/dashboard
 
 ---
 
 ## 📖 这是什么？
 
-这是一个专为 **OpenClaw** 用户设计的配置脚本，帮助你快速切换到 **Crazyrouter** API。
+这是一个专为 **OpenClaw** 用户设计的交互式配置脚本，帮助你快速切换到 **Crazyrouter** API。
 
 ### 为什么使用 Crazyrouter？
 
@@ -58,15 +58,23 @@ npm install -g openclaw
 ### 2. 运行配置脚本
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash -s YOUR_API_KEY
+curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash
 ```
 
-### 3. 完成！
+### 3. 按提示输入 API Key
+
+脚本会交互式地引导你：
+- 📋 显示注册链接和优惠信息
+- 🔑 提示输入 API Key
+- ✅ 自动验证格式
+- 🔄 自动配置并重启
+
+### 4. 完成！
 
 脚本会自动：
 - ✅ 备份现有配置
 - ✅ 配置 Crazyrouter API
-- ✅ 预置常用模型
+- ✅ 预置 7 个常用模型
 - ✅ 重启 Gateway
 - ✅ 验证连接
 
@@ -76,16 +84,77 @@ curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/opencla
 
 脚本会自动配置以下模型：
 
-```json
-{
-  "gpt-4o": "OpenAI 最强模型",
-  "gpt-4o-mini": "快速响应版本",
-  "claude-3-5-sonnet-20241022": "Anthropic 旗舰",
-  "claude-3-5-haiku-20241022": "快速 Claude",
-  "gemini-2.0-flash-exp": "Google 最新",
-  "deepseek-chat": "DeepSeek 对话",
-  "deepseek-reasoner": "DeepSeek 推理"
-}
+| 模型 ID | 说明 |
+|---------|------|
+| `gpt-4o` | OpenAI 最强模型 |
+| `gpt-4o-mini` | 快速响应版本 |
+| `claude-3-5-sonnet-20241022` | Anthropic 旗舰 |
+| `claude-3-5-haiku-20241022` | 快速 Claude |
+| `gemini-2.0-flash-exp` | Google 最新 |
+| `deepseek-chat` | DeepSeek 对话 |
+| `deepseek-reasoner` | DeepSeek 推理 |
+
+---
+
+## 🎬 使用演示
+
+```bash
+$ curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash
+
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║          OpenClaw + Crazyrouter 一键配置脚本               ║
+║                                                            ║
+║          访问 300+ AI 模型，官方价格 55% 折扣              ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+🔍 检查环境...
+✓ 检测到 OpenClaw v1.2.3
+
+🔑 配置 Crazyrouter API Key
+
+如果还没有 API Key，请访问：
+  https://crazyrouter.com/dashboard
+
+注册优惠：
+  🎁 通过此链接注册获得 $2 免费额度
+  🎁 首充输入 OPENCLAW 获得 30% 奖励
+  https://crazyrouter.com/register?aff=OZcm&ref=openclaw-switch
+
+请输入你的 Crazyrouter API Key: sk-xxxxxxxxxxxxx
+
+✓ API Key 已接收
+
+💾 备份现有配置...
+✓ 配置已备份到: ~/.openclaw/config.json.backup.20260313_080000
+
+⚙️  配置 Crazyrouter...
+✓ 通过 Gateway API 更新配置...
+✓ 配置已应用，Gateway 正在重启...
+
+✅ 验证 API 连接...
+✓ API 连接成功
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    🎉 配置完成！
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ 已配置的模型：
+
+  🤖 聊天模型：
+     • gpt-4o              (OpenAI 最强)
+     • gpt-4o-mini         (快速响应)
+     • claude-3-5-sonnet   (Anthropic 旗舰)
+     • claude-3-5-haiku    (快速 Claude)
+     • gemini-2.0-flash    (Google 最新)
+     • deepseek-chat       (DeepSeek 对话)
+     • deepseek-reasoner   (DeepSeek 推理)
+
+📚 查看更多模型：
+   https://docs.crazyrouter.com
+
+感谢使用 Crazyrouter！
 ```
 
 ---
@@ -132,7 +201,7 @@ openclaw gateway restart
 
 恢复：
 ```bash
-cp ~/.openclaw/config.json.backup.20260313_123456 ~/.openclaw/config.json
+cp ~/.openclaw/config.json.backup.20260313_080000 ~/.openclaw/config.json
 openclaw gateway restart
 ```
 
@@ -151,6 +220,9 @@ A: 需要 WSL 或 Git Bash。
 
 **Q: 如何添加更多模型？**  
 A: 手动编辑配置文件，或查看 [文档](https://docs.crazyrouter.com)。
+
+**Q: API Key 格式是什么？**  
+A: 通常以 `sk-` 开头，脚本会自动验证格式。
 
 ---
 

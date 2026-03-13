@@ -15,17 +15,17 @@ English | [中文](README.md)
 ## 🚀 One-Click Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash -s YOUR_API_KEY
+curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash
 ```
 
-**Replace `YOUR_API_KEY` with your Crazyrouter API Key**  
-**Get API Key**: https://crazyrouter.com
+**The script will prompt you to enter your Crazyrouter API Key**  
+**Get API Key**: https://crazyrouter.com/dashboard
 
 ---
 
 ## 📖 What is this?
 
-A configuration script designed specifically for **OpenClaw** users to quickly switch to **Crazyrouter** API.
+An interactive configuration script designed specifically for **OpenClaw** users to quickly switch to **Crazyrouter** API.
 
 ### Why Crazyrouter?
 
@@ -58,15 +58,23 @@ npm install -g openclaw
 ### 2. Run Setup Script
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash -s YOUR_API_KEY
+curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash
 ```
 
-### 3. Done!
+### 3. Follow the Prompts
+
+The script will interactively guide you:
+- 📋 Display registration link and special offers
+- 🔑 Prompt for API Key input
+- ✅ Auto-validate format
+- 🔄 Auto-configure and restart
+
+### 4. Done!
 
 The script will automatically:
 - ✅ Backup existing config
 - ✅ Configure Crazyrouter API
-- ✅ Pre-configure popular models
+- ✅ Pre-configure 7 popular models
 - ✅ Restart Gateway
 - ✅ Verify connection
 
@@ -76,16 +84,77 @@ The script will automatically:
 
 The script automatically configures these models:
 
-```json
-{
-  "gpt-4o": "OpenAI's most capable model",
-  "gpt-4o-mini": "Fast response version",
-  "claude-3-5-sonnet-20241022": "Anthropic flagship",
-  "claude-3-5-haiku-20241022": "Fast Claude",
-  "gemini-2.0-flash-exp": "Google's latest",
-  "deepseek-chat": "DeepSeek chat",
-  "deepseek-reasoner": "DeepSeek reasoning"
-}
+| Model ID | Description |
+|----------|-------------|
+| `gpt-4o` | OpenAI's most capable |
+| `gpt-4o-mini` | Fast response version |
+| `claude-3-5-sonnet-20241022` | Anthropic flagship |
+| `claude-3-5-haiku-20241022` | Fast Claude |
+| `gemini-2.0-flash-exp` | Google's latest |
+| `deepseek-chat` | DeepSeek chat |
+| `deepseek-reasoner` | DeepSeek reasoning |
+
+---
+
+## 🎬 Demo
+
+```bash
+$ curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash
+
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║          OpenClaw + Crazyrouter Setup Script               ║
+║                                                            ║
+║          Access 300+ AI Models, 55% Off Official Price     ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+🔍 Checking environment...
+✓ Detected OpenClaw v1.2.3
+
+🔑 Configure Crazyrouter API Key
+
+If you don't have an API Key yet, visit:
+  https://crazyrouter.com/dashboard
+
+Special Offer:
+  🎁 Register via this link to get $2 free credit
+  🎁 Enter OPENCLAW on first top-up for 30% bonus
+  https://crazyrouter.com/register?aff=OZcm&ref=openclaw-switch
+
+Please enter your Crazyrouter API Key: sk-xxxxxxxxxxxxx
+
+✓ API Key received
+
+💾 Backing up existing config...
+✓ Config backed up to: ~/.openclaw/config.json.backup.20260313_080000
+
+⚙️  Configuring Crazyrouter...
+✓ Updating config via Gateway API...
+✓ Config applied, Gateway restarting...
+
+✅ Verifying API connection...
+✓ API connection successful
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    🎉 Setup Complete!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ Configured Models:
+
+  🤖 Chat Models:
+     • gpt-4o              (OpenAI's best)
+     • gpt-4o-mini         (Fast response)
+     • claude-3-5-sonnet   (Anthropic flagship)
+     • claude-3-5-haiku    (Fast Claude)
+     • gemini-2.0-flash    (Google's latest)
+     • deepseek-chat       (DeepSeek chat)
+     • deepseek-reasoner   (DeepSeek reasoning)
+
+📚 View more models:
+   https://docs.crazyrouter.com
+
+Thank you for using Crazyrouter!
 ```
 
 ---
@@ -132,7 +201,7 @@ Config is automatically backed up to:
 
 Restore:
 ```bash
-cp ~/.openclaw/config.json.backup.20260313_123456 ~/.openclaw/config.json
+cp ~/.openclaw/config.json.backup.20260313_080000 ~/.openclaw/config.json
 openclaw gateway restart
 ```
 
@@ -151,6 +220,9 @@ A: Requires WSL or Git Bash.
 
 **Q: How to add more models?**  
 A: Edit config manually or check [docs](https://docs.crazyrouter.com).
+
+**Q: What's the API Key format?**  
+A: Usually starts with `sk-`, the script auto-validates format.
 
 ---
 
