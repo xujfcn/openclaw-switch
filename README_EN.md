@@ -5,6 +5,7 @@
 ### One-Click Setup: Access 300+ AI Models with OpenClaw
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-lightgrey.svg)](https://github.com/xujfcn/openclaw-switch)
 
 English | [中文](README.md)
 
@@ -47,12 +48,27 @@ An interactive configuration script designed specifically for **OpenClaw** users
 
 ---
 
+## 💻 System Requirements
+
+- ✅ **Linux**: Ubuntu 20.04+, Debian 11+, CentOS 8+, Fedora 34+
+- ✅ **macOS**: macOS 10.15 (Catalina) and above
+- ⚠️ **Windows**: Requires WSL (Windows Subsystem for Linux) or Git Bash
+
+---
+
 ## ⚡ Quick Start
 
 ### 1. Install OpenClaw (if not already installed)
 
+**Linux / macOS:**
 ```bash
 npm install -g openclaw
+```
+
+**macOS (Homebrew):**
+```bash
+brew tap openclaw/openclaw
+brew install openclaw
 ```
 
 ### 2. Run Setup Script
@@ -223,6 +239,12 @@ A: Edit config manually or check [docs](https://docs.crazyrouter.com).
 
 **Q: What's the API Key format?**  
 A: Usually starts with `sk-`, the script auto-validates format.
+
+**Q: Do I need jq on macOS?**  
+A: Recommended for config merging. Install: `brew install jq`
+
+**Q: Permission issues on macOS?**  
+A: If you encounter permission issues, use `sudo npm install -g openclaw`.
 
 ---
 

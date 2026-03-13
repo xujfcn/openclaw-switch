@@ -1,23 +1,52 @@
 #!/bin/bash
 # Crazyrouter OpenClaw 一键配置脚本（交互式版本）
+# 支持 Linux 和 macOS
 # 使用方法：bash openclaw-setup.sh
 
 set -e
 
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-NC='\033[0m'
+# 检测操作系统
+detect_os() {
+    case "$(uname -s)" in
+        Linux*)     OS="Linux";;
+        Darwin*)    OS="macOS";;
+        CYGWIN*|MINGW*|MSYS*)    OS="Windows";;
+        *)          OS="Unknown";;
+    esac
+}
+
+detect_os
+
+# 颜色定义（兼容 Linux 和 macOS）
+if [[ "$OS" == "macOS" ]]; then
+    # macOS 使用不同的 echo 语法
+    GREEN='\033[0;32m'
+    YELLOW='\033[1;33m'
+    RED='\033[0;31m'
+    BLUE='\033[0;34m'
+    CYAN='\033[0;36m'
+    NC='\033[0m'
+else
+    GREEN='\033[0;32m'
+    YELLOW='\033[1;33m'
+    RED='\033[0;31m'
+    BLUE='\033[0;34m'
+    CYAN='\033[0;36m'
+    NC='\033[0m'
+fi
 
 print_info() { echo -e "${GREEN}✓${NC} $1"; }
 print_warn() { echo -e "${YELLOW}!${NC} $1"; }
 print_error() { echo -e "${RED}✗${NC} $1"; }
 print_header() { echo -e "${CYAN}$1${NC}"; }
 
-# 打印欢迎信息
-clear
+# 清屏（兼容不同系统）
+if command -v clear &> /dev/null; then
+    clear
+else
+    printf "\033c"
+fi
+
 echo ""
 echo -e "${CYAN}╔════════════════════════════════════════════════════════════╗${NC}"
 echo -e "${CYAN}║                                                            ║${NC}"
@@ -28,18 +57,58 @@ echo -e "${CYAN}║                                                            �
 echo -e "${CYAN}╚════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
+# 显示系统信息
+print_header "🖥️  系统信息"
+echo "  操作系统: $OS"
+if [[ "$OS" == "macOS" ]]; then
+    echo "  版本: $(sw_vers -productVersion 2>/dev/null || echo 'Unknown')"
+elif [[ "$OS" == "Linux" ]]; then
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        echo "  发行版: $NAME ${VERSION:-}"
+    fi
+fi
+echo ""
+
+# 检查不支持的系统
+if [[ "$OS" == "Windows" ]]; then
+    print_error "Windows 系统不支持直接运行此脚本"
+    echo ""
+    echo "请使用以下方式之一："
+    echo "  1. WSL (Windows Subsystem for Linux)"
+    echo "  2. Git Bash"
+    echo "  3. 手动配置（查看 README.md）"
+    echo ""
+    exit 1
+fi
+
+if [[ "$OS" == "Unknown" ]]; then
+    print_warn "未知操作系统，尝试继续..."
+    echo ""
+fi
+
 # 检查 OpenClaw
 print_header "🔍 检查环境..."
 if ! command -v openclaw &> /dev/null; then
     print_error "OpenClaw 未安装"
     echo ""
     echo "请先安装 OpenClaw："
-    echo -e "${BLUE}  npm install -g openclaw${NC}"
+    if [[ "$OS" == "macOS" ]]; then
+        echo -e "${BLUE}  # 使用 npm (推荐)${NC}"
+        echo -e "${BLUE}  npm install -g openclaw${NC}"
+        echo ""
+        echo -e "${BLUE}  # 或使用 Homebrew${NC}"
+        echo -e "${BLUE}  brew tap openclaw/openclaw${NC}"
+        echo -e "${BLUE}  brew install openclaw${NC}"
+    else
+        echo -e "${BLUE}  npm install -g openclaw${NC}"
+    fi
     echo ""
     exit 1
 fi
 
-print_info "检测到 OpenClaw $(openclaw --version)"
+OPENCLAW_VERSION=$(openclaw --version 2>/dev/null || echo "unknown")
+print_info "检测到 OpenClaw $OPENCLAW_VERSION"
 echo ""
 
 # 获取 API Key
@@ -123,6 +192,8 @@ EOF
 # 应用配置
 if openclaw gateway status &> /dev/null; then
     print_info "通过 Gateway API 更新配置..."
+    
+    # macOS 和 Linux 的 curl 命令相同
     RESPONSE=$(curl -s -X POST http://localhost:3777/api/gateway/config.patch \
         -H "Content-Type: application/json" \
         -d @/tmp/crazyrouter.json)
@@ -138,10 +209,20 @@ if openclaw gateway status &> /dev/null; then
 else
     print_warn "Gateway 未运行，手动更新配置文件..."
     
+    # 检查 jq 是否可用
     if command -v jq &> /dev/null && [ -f "$CONFIG_FILE" ]; then
         jq -s '.[0] * .[1]' "$CONFIG_FILE" /tmp/crazyrouter.json > /tmp/merged.json
         mv /tmp/merged.json "$CONFIG_FILE"
     else
+        # jq 不可用，直接覆盖
+        if ! command -v jq &> /dev/null; then
+            print_warn "未检测到 jq，无法合并配置"
+            if [[ "$OS" == "macOS" ]]; then
+                echo "  建议安装 jq: brew install jq"
+            else
+                echo "  建议安装 jq: sudo apt install jq (Debian/Ubuntu)"
+            fi
+        fi
         mkdir -p "$HOME/.openclaw"
         cp /tmp/crazyrouter.json "$CONFIG_FILE"
     fi
@@ -189,5 +270,11 @@ echo "   • 配置已自动备份"
 echo "   • 现在可以直接使用 OpenClaw"
 echo "   • 所有 API 调用将通过 Crazyrouter"
 echo ""
+if [[ "$OS" == "macOS" ]]; then
+    echo "🍎 macOS 用户提示："
+    echo "   • 如需 jq: brew install jq"
+    echo "   • 配置文件位于: ~/.openclaw/config.json"
+    echo ""
+fi
 echo -e "${CYAN}感谢使用 Crazyrouter！${NC}"
 echo ""

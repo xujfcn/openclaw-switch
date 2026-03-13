@@ -5,6 +5,7 @@
 ### 一键配置脚本：让 OpenClaw 访问 300+ AI 模型
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-lightgrey.svg)](https://github.com/xujfcn/openclaw-switch)
 
 [English](README_EN.md) | 中文
 
@@ -47,12 +48,27 @@ curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/opencla
 
 ---
 
+## 💻 系统要求
+
+- ✅ **Linux**: Ubuntu 20.04+, Debian 11+, CentOS 8+, Fedora 34+
+- ✅ **macOS**: macOS 10.15 (Catalina) 及以上
+- ⚠️ **Windows**: 需要 WSL (Windows Subsystem for Linux) 或 Git Bash
+
+---
+
 ## ⚡ 快速开始
 
 ### 1. 安装 OpenClaw（如果还没安装）
 
+**Linux / macOS:**
 ```bash
 npm install -g openclaw
+```
+
+**macOS (Homebrew):**
+```bash
+brew tap openclaw/openclaw
+brew install openclaw
 ```
 
 ### 2. 运行配置脚本
@@ -223,6 +239,12 @@ A: 手动编辑配置文件，或查看 [文档](https://docs.crazyrouter.com)�
 
 **Q: API Key 格式是什么？**  
 A: 通常以 `sk-` 开头，脚本会自动验证格式。
+
+**Q: macOS 上需要安装 jq 吗？**  
+A: 建议安装，用于合并配置。安装方式：`brew install jq`
+
+**Q: macOS 提示权限问题怎么办？**  
+A: 如果遇到权限问题，使用 `sudo npm install -g openclaw` 安装 OpenClaw。
 
 ---
 
