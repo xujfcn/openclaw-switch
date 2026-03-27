@@ -71,6 +71,11 @@ brew tap openclaw/openclaw
 brew install openclaw
 ```
 
+**Windows (PowerShell):**
+```powershell
+npm install -g openclaw
+```
+
 ### 2. 运行配置脚本
 
 ```bash
@@ -274,6 +279,11 @@ MIT License
 <div align="center">
 
 **让 OpenClaw 访问 300+ AI 模型！** 🚀
+
+Made with ❤️ by [Crazyrouter](https://crazyrouter.com)
+
+</div>
+🚀
 
 Made with ❤️ by [Crazyrouter](https://crazyrouter.com)
 

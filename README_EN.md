@@ -15,8 +15,16 @@ English | [中文](README.md)
 
 ## 🚀 One-Click Install
 
+### macOS / Linux
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/openclaw-setup.sh | bash
+```
+
+### Windows (PowerShell)
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\switch-openclaw-to-crazyrouter.ps1
 ```
 
 **The script will prompt you to enter your Crazyrouter API Key**  
