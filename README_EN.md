@@ -110,10 +110,11 @@ The script automatically configures these models:
 
 | Model ID | Description |
 |----------|-------------|
-| `gpt-4o` | OpenAI's most capable |
+| `gpt-5.4` | Primary default model |
+| `claude-sonnet-4-6` | Secondary default model |
+| `claude-opus-4-6` | Higher-quality complex tasks |
+| `gpt-4o` | OpenAI multimodal |
 | `gpt-4o-mini` | Fast response version |
-| `claude-3-5-sonnet-20241022` | Anthropic flagship |
-| `claude-3-5-haiku-20241022` | Fast Claude |
 | `gemini-2.0-flash-exp` | Google's latest |
 | `deepseek-chat` | DeepSeek chat |
 | `deepseek-reasoner` | DeepSeek reasoning |
