@@ -177,10 +177,11 @@ cat > /tmp/crazyrouter.json <<EOF
       }
     ],
     "models": [
+      {"id": "gpt-5.4", "provider": "crazyrouter", "name": "gpt-5.4"},
+      {"id": "claude-sonnet-4-6", "provider": "crazyrouter", "name": "claude-sonnet-4-6"},
+      {"id": "claude-opus-4-6", "provider": "crazyrouter", "name": "claude-opus-4-6"},
       {"id": "gpt-4o", "provider": "crazyrouter", "name": "gpt-4o"},
       {"id": "gpt-4o-mini", "provider": "crazyrouter", "name": "gpt-4o-mini"},
-      {"id": "claude-3-5-sonnet-20241022", "provider": "crazyrouter", "name": "claude-3-5-sonnet-20241022"},
-      {"id": "claude-3-5-haiku-20241022", "provider": "crazyrouter", "name": "claude-3-5-haiku-20241022"},
       {"id": "gemini-2.0-flash-exp", "provider": "crazyrouter", "name": "gemini-2.0-flash-exp"},
       {"id": "deepseek-chat", "provider": "crazyrouter", "name": "deepseek-chat"},
       {"id": "deepseek-reasoner", "provider": "crazyrouter", "name": "deepseek-reasoner"}

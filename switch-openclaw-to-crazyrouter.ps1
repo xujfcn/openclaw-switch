@@ -109,12 +109,14 @@ Write-Host " Setup complete! OpenClaw is now configured for Crazyrouter" -Foregr
 Write-Host "============================================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "Configured models:" -ForegroundColor Cyan
+Write-Host " - gpt-5.4 (primary)"
+Write-Host " - claude-sonnet-4-6 (secondary)"
+Write-Host " - claude-opus-4-6"
 Write-Host " - gpt-4o"
 Write-Host " - gpt-4o-mini"
-Write-Host " - claude-sonnet-4-6"
-Write-Host " - claude-opus-4-6"
 Write-Host " - gemini-2.0-flash-exp"
 Write-Host " - deepseek-chat"
 Write-Host " - deepseek-reasoner"
 Write-Host ""
 Write-Host "Docs: https://docs.crazyrouter.com" -ForegroundColor Cyan
+ter.com" -ForegroundColor Cyan
