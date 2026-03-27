@@ -182,7 +182,7 @@ cat > /tmp/crazyrouter.json <<EOF
       {"id": "claude-opus-4-6", "provider": "crazyrouter", "name": "claude-opus-4-6"},
       {"id": "gpt-4o", "provider": "crazyrouter", "name": "gpt-4o"},
       {"id": "gpt-4o-mini", "provider": "crazyrouter", "name": "gpt-4o-mini"},
-      {"id": "gemini-2.0-flash-exp", "provider": "crazyrouter", "name": "gemini-2.0-flash-exp"},
+      {"id": "gemini-3.1-pro-preview", "provider": "crazyrouter", "name": "gemini-3.1-pro-preview"},
       {"id": "deepseek-chat", "provider": "crazyrouter", "name": "deepseek-chat"},
       {"id": "deepseek-reasoner", "provider": "crazyrouter", "name": "deepseek-reasoner"}
     ]

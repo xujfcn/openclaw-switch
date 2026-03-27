@@ -112,7 +112,7 @@ curl -fsSL https://raw.githubusercontent.com/xujfcn/openclaw-switch/main/opencla
 | `claude-opus-4-6` | 高质量复杂任务 |
 | `gpt-4o` | OpenAI 多模态 |
 | `gpt-4o-mini` | 快速响应版本 |
-| `gemini-2.0-flash-exp` | Google 最新 |
+| `gemini-3.1-pro-preview` | Google 旗舰预览模型 |
 | `deepseek-chat` | DeepSeek 对话 |
 | `deepseek-reasoner` | DeepSeek 推理 |
 

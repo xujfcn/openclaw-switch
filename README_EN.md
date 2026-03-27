@@ -115,7 +115,7 @@ The script automatically configures these models:
 | `claude-opus-4-6` | Higher-quality complex tasks |
 | `gpt-4o` | OpenAI multimodal |
 | `gpt-4o-mini` | Fast response version |
-| `gemini-2.0-flash-exp` | Google's latest |
+| `gemini-3.1-pro-preview` | Google's flagship preview model |
 | `deepseek-chat` | DeepSeek chat |
 | `deepseek-reasoner` | DeepSeek reasoning |
 
